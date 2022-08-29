@@ -7,12 +7,12 @@ Example usage:
 ```
 local_resource(
     name='public-api-restarter',
-    resource_deps=['backend-api', 'public-api'], 
-    serve_cmd=['./restart-operator.sh', 'backend-api', 'public-api'], 
+    resource_deps=['backend-api-1', 'backend-api-2', 'public-api'], 
+    serve_cmd=['./restart-operator.sh', 'public-api', 'backend-api-1', 'backend-api-2'], 
     deps=['./restart-operator.sh']);
 ```
 
-Will restart `public-api` whenever `backend-api` restarts.
+Will restart `public-api` whenever `backend-api-1` or `backend-api-2` restarts.
 
 This can be useful for resources that source some of their configuration from their dependencies during startup.
 
@@ -28,11 +28,10 @@ local_resource(
 local_resource(
     name='public-api-restarter',
     resource_deps=['public-api'], 
-    serve_cmd=['./restart-operator.sh', 'public-api', 'public-api-tests'], 
+    serve_cmd=['./restart-operator.sh', 'public-api-tests', 'public-api'], 
     deps=['./restart-operator.sh']);
 ```
 
 ## Future Work
 
-1. Support multiple dependencies.
-2. See if there is a way to define the dependency information on the original resource and have the operator read that.
+1. See if there is a way to define the dependency information on the original resource and have the operator read that.
