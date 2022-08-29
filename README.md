@@ -1,6 +1,6 @@
 # Restart Operator
 
-Restarts a resource its dependency also restarts.
+Restarts a resource when its dependencies restart.
 
 Example usage:
 
@@ -12,7 +12,7 @@ local_resource(
     deps=['./restart-operator.sh']);
 ```
 
-Will restart `public-api` whenever `backend-api-1` or `backend-api-2` restarts.
+This will restart `public-api` whenever `backend-api-1` or `backend-api-2` restarts.
 
 This can be useful for resources that source some of their configuration from their dependencies during startup.
 
